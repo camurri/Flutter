@@ -23,7 +23,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int counter = 0 ;
+  int counter = 0;
 
   void decrementCounter() {
     // Chama o método setState para reconstruir a interface com o novo valor do contador.
@@ -33,6 +33,10 @@ class _HomePageState extends State<HomePage> {
       counter--;
     });
   }
+
+  bool get taVazio => counter == 0;
+
+  bool get taCheio => counter == 20;
 
   void incrementCounter() {
     // Chama o método setState para reconstruir a interface com o novo valor do contador.
@@ -54,12 +58,12 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Pode entrar!',
+                Text(taCheio ? 'Lotado!' : 'Pode entrar!',
                     style: TextStyle(
                         fontSize: 35,
                         fontWeight: FontWeight.w700,
-                        color: Colors.white)),
-                Text(counter.toString(),
+                        color: taCheio ? Colors.amber : Colors.green)),
+                Text(counter.toString(), // Exibe o valor do contador.
                     style: TextStyle(
                         fontSize: 100,
                         fontWeight: FontWeight.w700,
@@ -68,10 +72,12 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TextButton(
-                      onPressed: decrementCounter,
+                      onPressed: taVazio ? null : decrementCounter,
                       style: TextButton.styleFrom(
                         foregroundColor: Colors.black,
-                        backgroundColor: Colors.white,
+                        backgroundColor: taVazio
+                            ? Colors.white.withValues(alpha: 0.2)
+                            : Colors.white,
                         fixedSize: const Size(100, 100),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24),
@@ -82,10 +88,12 @@ class _HomePageState extends State<HomePage> {
                     ),
                     SizedBox(width: 32),
                     TextButton(
-                      onPressed: incrementCounter,
+                      onPressed: taCheio ? null : incrementCounter,
                       style: TextButton.styleFrom(
                         foregroundColor: Colors.black,
-                        backgroundColor: Colors.white,
+                        backgroundColor: taCheio
+                            ? Colors.white.withValues(alpha: 0.2)
+                            : Colors.white,
                         fixedSize: const Size(100, 100),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24),
@@ -95,7 +103,11 @@ class _HomePageState extends State<HomePage> {
                           style: TextStyle(color: Colors.black, fontSize: 22)),
                     ),
                   ],
-                )
+                ),
+
+
+
+                Text('data', style: TextStyle(color: Colors.white),),
               ],
             )));
   }
