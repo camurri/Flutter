@@ -19,16 +19,31 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8
     }
 
+//    defaultConfig {
+//        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+//        applicationId = "com.camuricompany.contador"
+//        // You can update the following values to match your application needs.
+//        // For more information, see: https://flutter.dev/to/review-gradle-config.
+//        minSdk = flutter.minSdkVersion
+//        targetSdk = flutter.targetSdkVersion
+//        versionCode = flutter.versionCode
+//        versionName = flutter.versionName
+//    }
+
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+        // Seu ID único de aplicativo (Application ID)
         applicationId = "com.camuricompany.contador"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
-        versionCode = flutter.versionCode
-        versionName = flutter.versionName
+
+        // Defina manualmente o minSdkVersion e targetSdkVersion
+        minSdkVersion 21  // ou qualquer valor adequado
+
+        targetSdkVersion 33  // ou qualquer valor adequado
+
+        // As versões do aplicativo
+        versionCode flutter.versionCode
+        versionName flutter.versionName
     }
+
 
     buildTypes {
         release {
