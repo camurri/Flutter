@@ -5,11 +5,15 @@ class TodoListPage extends StatelessWidget {
 
   final TextEditingController todoController = TextEditingController();
 
-  void add_new_todo() {
-    String add = todoController.text;
+  void addNewTodo() {
+    String addTodo = todoController.text;
     //ignore: avoid_print
-    print(add);
+    print(addTodo);
     todoController.clear();
+  }
+
+  void deleteAllTodo() {
+    //todoController.clear();
   }
 
   @override
@@ -24,9 +28,13 @@ class TodoListPage extends StatelessWidget {
               'Lista de Tarefas',
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
+
+
             SizedBox(
               height: 16,
             ),
+
+
             Row(
               children: [
                 Expanded(
@@ -39,19 +47,52 @@ class TodoListPage extends StatelessWidget {
                     ),
                   ),
                 ),
+
+
                 SizedBox(
                   width: 8,
                 ),
+
+
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.lightGreen,
-                      iconColor: Colors.white,
-                      fixedSize: Size(80, 50)),
-                  onPressed: () {},
+                    backgroundColor: Colors.lightGreen,
+                    iconColor: Colors.white,
+                    fixedSize: Size(80, 50),
+                    padding: EdgeInsets.all(14),
+                  ),
+                  onPressed: addNewTodo,
                   child: Icon(Icons.add),
                 ),
+
+              ],
+            ),
+
+            SizedBox(width: 32),
+
+            Row(
+              children: [
+                Expanded(
+                  child: Text('Você possui tarefas pendentes'),
+                ),
+
+                SizedBox(height: 200),
+
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    iconColor: Colors.white,
+                    padding: EdgeInsets.all(14),
+                    fixedSize: Size(80, 50),
+                  ),
+                  onPressed: deleteAllTodo,
+                  child: Icon(
+                    Icons.delete_forever,
+                  ),
+                )
               ],
             )
+
           ],
         ),
       ),
